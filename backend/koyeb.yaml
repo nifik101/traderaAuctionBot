@@ -1,0 +1,34 @@
+name: tradera-assistant-backend
+regions:
+  - fra
+services:
+  - name: api
+    instance_type: nano
+    cpus: 1
+    memory: 512
+    ports:
+      - port: 8000
+        protocol: http
+    env:
+      - name: SUPABASE_URL
+        value: https://crfitjrruvoqbwzjgmol.supabase.co
+      - name: SUPABASE_ANON_KEY
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNyZml0anJydXZvcWJ3empnbW9sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ2MTU5MzAsImV4cCI6MjA2MDE5MTkzMH0.DB6Apno9jcvo4SzYwz4ESf8Tv2mb6c0czyggqSw-pRk
+      - name: SUPABASE_SERVICE_ROLE_KEY
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNyZml0anJydXZvcWJ3empnbW9sIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0NDYxNTkzMCwiZXhwIjoyMDYwMTkxOTMwfQ.SfKYZ8pbmeRhDDQmItMKU7vPbDsRkosd6JYPqST5UEk
+      - name: TRADERA_APP_ID
+        value: "5050"
+      - name: TRADERA_APP_KEY
+        value: d5fbd47a-1508-4f9e-8fb0-0110cb924829
+      - name: FRONTEND_URL
+        value: https://etvblafs.manus.space
+      - name: NODE_ENV
+        value: production
+      - name: PORT
+        value: "8000"
+    routes:
+      - path: /
+        protocol: http
+    dockerfile: Dockerfile
+    build_command: pip install -r requirements.txt
+    run_command: uvicorn main:app --host 0.0.0.0 --port 8000
