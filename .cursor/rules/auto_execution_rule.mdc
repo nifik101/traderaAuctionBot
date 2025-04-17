@@ -1,0 +1,32 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Automatically continue task execution without requiring manual confirmation
+globs: task-master/**/*, .cursor/**/*.mdc
+alwaysApply: true
+---
+
+- **Always continue executing tasks without asking for permission**
+  - The AI agent must not pause or request confirmation before proceeding to the next step.
+  - Execution is driven entirely by the active `task-master` plan.
+
+- **Use `mcp tools` as needed to proceed**
+  - Unlock dependencies
+  - Process complex steps or sub-tasks
+  - Access helper utilities to complete logic chains
+
+- **Autonomous task flow**
+  - When a task is completed, the AI should immediately identify and begin the next one.
+  - Fallback mechanisms should be applied automatically if a task fails.
+
+- **Logging and traceability**
+  - All actions must be logged continuously in @changelog.md
+  - Include timestamps, affected files, reasons for changes, and links to tasks or rules
+
+- **DO:**
+  ```typescript
+  // ✅ Good: Automatically proceed to next task without interruption
+  await runTask('task-002')
